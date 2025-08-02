@@ -559,7 +559,18 @@ local function showMenu(show)
     local entity = cache.vehicle
     if not poly.isNear or not entity then return end
 
+    print('🔍 [DEBUG] Attempting to open UI, uiLoaded:', uiLoaded)
+    SetNuiFocus(true, true)
+    SendReactMessage('setVisible', true)
+    
+    -- Force the customsLoaded call when we actually open the UI
+    if not uiLoaded then
+        print('🔍 [DEBUG] UI not loaded yet, requesting initialization...')
+        SendReactMessage('requestInit', {})
+    end
+    
     lib.waitFor(function()
+        print('🔍 [DEBUG] Checking uiLoaded:', uiLoaded)
         if uiLoaded then return true end
     end, 'Couldn\'t load UI, did you download release?', 5000)
 
@@ -1112,7 +1123,9 @@ RegisterNUICallback('buyMod', function(data, cb)
 end)
 
 RegisterNUICallback('customsLoaded', function(data, cb)
+    print('🎉 [DEBUG] customsLoaded callback received!')
     uiLoaded = true
+    print('🎉 [DEBUG] uiLoaded set to:', uiLoaded)
     cb(require 'client.modules.filter'.colorTypes)
 end)
 
