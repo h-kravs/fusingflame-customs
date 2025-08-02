@@ -1,0 +1,856 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700;800&display=swap');
+
+@font-face {
+  font-family: 'DIN Pro Cond';
+  font-style: italic;
+  font-weight: 900;
+  src: url('../fonts/DINPro-CondBlackItalic.woff2') format('woff2'),
+       url('../fonts/DINPro-CondBlackItalic.woff') format('woff'),
+       url('../fonts/DINPro-CondBlackItalic.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'DIN Pro Cond', 'Sen', sans-serif;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+:root {
+  --bg-color: #282c34;
+  --text-color: #f7f7f9;
+  --highlight-color: #8685EF;
+  --yellow-color: #ffd502;
+  --dark-pill: #2a2a2a80;
+  --keycap-bg: #333;
+  --keycap-border: #555;
+  --action-text: #bfbfbf;
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  height: 4px;
+  width: 4px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: var(--highlight-color);
+}
+
+.customs-wrapper {
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  text-align: center;
+  font-family: 'DIN Pro Cond', 'Sen', sans-serif;
+  padding-left: 80px;
+}
+
+
+.cards-swapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: absolute;
+  height: 40px;
+  bottom: 15rem;
+  left: 80px;
+  color: white;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 36px;
+}
+
+.camera-handle{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.cards-wrapper {
+  bottom: 4.3rem;
+  height: 18%;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: flex-start;
+  left: 0;
+}
+
+.cards-count {
+  position: relative;
+  width: auto;
+  height: 40px;
+  color: white;
+  padding: 2px 2px 2px 5px;
+  font-size: 36px;
+  font-weight: 900;
+  margin-left: 10px;
+}
+
+.flexbox {
+  display: flex;
+  gap: 15px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  padding: 0;
+  margin-left: 80px;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  max-width: 80%;
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.flexbox::-webkit-scrollbar {
+  display: none;
+}
+
+.cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+  width: 280px;
+  pointer-events: none;
+  position: relative;
+  height: 120px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--text-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.cards-center-content { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.card-icon {
+  transition: all 0.2s ease-in-out;
+  width: 40px;
+  height: 40px;
+  fill: white;
+  color: white;
+  /* Filter for PNG icons - make them white by default */
+  filter: brightness(0) invert(1);
+}
+
+.card-text {
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.card-price{
+  position: absolute;
+  font-size: 17px;
+  padding: 3px 8px;
+  margin: 0;
+  top: 0px;
+  right: 0px;
+  background-color: #000000;
+  color: var(--yellow-color);
+  font-weight: 800;
+  font-style: italic;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Hexagon Dollar Symbol */
+.dollar-hexagon {
+  width: 12px;
+  height: 9px;
+  background-color: var(--yellow-color);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  color: #000000;
+}
+
+.dollar-hexagon::before,
+.dollar-hexagon::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.dollar-hexagon::before {
+  bottom: 100%;
+  border-bottom: 2px solid var(--yellow-color);
+}
+
+.dollar-hexagon::after {
+  top: 100%;
+  border-top: 2px solid var(--yellow-color);
+}
+
+.card-applied{
+  position: absolute;
+  padding: 2px;
+  top: 2px;
+  left: 2px;
+}
+
+.card-applied .card-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* New purchased indicator in top-right corner */
+.card-purchased-indicator {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
+  background-color: #000000;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.purchased-circle {
+  width: 16px;
+  height: 16px;
+  background-color: #8685EF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.purchased-circle .card-icon {
+  width: 10px;
+  height: 10px;
+  color: #000000;
+  fill: #000000;
+}
+
+.cardsHover {
+  background-color: white;
+  transform: scale(1.05);
+}
+
+.cardsHover .card-icon,
+.cardsHover .card-text {
+  color: var(--bg-color);
+  fill: var(--bg-color);
+  /* Filter for PNG icons - make them dark on hover */
+  filter: brightness(0) invert(0);
+}
+
+.yellow {
+  background-color: var(--highlight-color);
+}
+
+.yellow .card-icon,
+.yellow .card-text {
+  fill: white;
+  color: white;
+  /* Filter for PNG icons - make them white on selected */
+  filter: brightness(0) invert(1);
+}
+
+/* Vehicle Stats Panel */
+.vehicle-stats-panel {
+  position: absolute;
+  left: 80px;
+  top: 49.5%;
+  transform: translateY(-50%);
+  width: 280px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  padding: 35px 25px;
+  font-family: 'DIN Pro Cond', 'Sen', sans-serif;
+  color: #ffffff;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Section */
+.stats-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.brand-info {
+  text-align: center;
+}
+
+.brand-name {
+  font-size: 36px;
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.vehicle-model {
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.level-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.car-icon {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+}
+
+.level-number {
+  font-size: 20px;
+  font-weight: 800;
+  font-style: italic;
+  color: #ffffff;
+}
+
+/* Performance Stats */
+.performance-stats {
+  margin-bottom: 30px;
+}
+
+.stat-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  position: relative;
+}
+
+.stat-track {
+  width: 100%;
+  height: 14px;
+  background-color: rgba(111, 111, 111, 0.3);
+  border-radius: 0;
+  position: relative;
+  flex: 1;
+}
+
+.stat-fill {
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 0;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.stat-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 2px;
+  height: 20px;
+  background-color: #ffffff;
+}
+
+.stat-value {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #000000;
+  min-width: 32px;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.stat-value span {
+  display: inline-block;
+}
+
+/* Handling Radar */
+.handling-radar {
+  position: relative;
+  padding-top: 40px;
+}
+
+.handling-radar::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(111, 111, 111, 0.3);
+}
+
+.radar-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.radar-diamond {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #ffffff;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+}
+
+.radar-grid {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: rotate(-45deg);
+}
+
+.grid-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-lines::before,
+.grid-lines::after {
+  content: '';
+  position: absolute;
+  background-color: #6f6f6f;
+}
+
+.grid-lines::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+}
+
+.grid-lines::after {
+  width: 100%;
+  height: 1px;
+  left: 0;
+  top: 50%;
+}
+
+.radar-point {
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* Radar Labels */
+.radar-labels {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.radar-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.radar-label svg {
+  width: 12px;
+  height: 12px;
+  color: #ffffff;
+}
+
+.radar-label.top {
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.radar-label.bottom {
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.radar-label.left {
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.radar-label.right {
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* PlayerHUD */
+.player-hud {
+  position: absolute;
+  top: 120px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  z-index: 100;
+}
+
+.hud-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-icon {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+}
+
+.hud-text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.rep-circle {
+  width: 24px;
+  height: 24px;
+  background-color: var(--yellow-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.money-rect {
+  background-color: #000000;
+  color: var(--yellow-color);
+  padding: 4px 12px;
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Footbar */
+.footbar {
+  position: absolute;
+  bottom: 2rem;
+  left: 80px;
+  width: fit-content;
+  height: 48px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
+.footbar-content {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .footbar-content {
+    gap: 12px;
+  }
+}
+
+.action-pair {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding-right: 20px;
+}
+
+.action-pair:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.keycap {
+  background-color: var(--keycap-bg);
+  border: 1px solid var(--keycap-border);
+  color: #ffffff;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 24px;
+  text-align: center;
+}
+
+.action-text {
+  color: var(--action-text);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Confirm Center Wrapper for positioning */
+.confirm-center-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  pointer-events: none; /* Allow clicks to pass through except on the dialog */
+}
+
+.confirm-center-wrapper .confirm-purchase-container {
+  pointer-events: auto; /* Re-enable clicks on the dialog itself */
+}
+
+.confirm-purchase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 40px 0px;
+  font-family: 'DIN Pro Cond', 'Sen', sans-serif;
+  color: #ffffff;
+  user-select: none;
+  width: 100vw;
+  height: auto;
+  /* Animation properties */
+  transform-origin: center center;
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Shot animation - Entry */
+.confirm-purchase-container.entering {
+  animation: shotEnter 0.2s ease-out forwards;
+}
+
+/* Shot animation - Exit */
+.confirm-purchase-container.exiting {
+  animation: shotExit 0.15s ease-in forwards;
+}
+
+/* Shot Enter Animation - Start compressed, expand to normal */
+@keyframes shotEnter {
+  0% {
+    transform: scaleY(0.05) scaleX(0.8);
+    opacity: 0;
+  }
+  30% {
+    transform: scaleY(0.4) scaleX(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scaleY(1.1) scaleX(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Shot Exit Animation - Compress back down */
+@keyframes shotExit {
+  0% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scaleY(0.9) scaleX(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scaleY(0.05) scaleX(0.8);
+    opacity: 0;
+  }
+}
+
+.confirm-title {
+  font-size: 32px;
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.confirm-cost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.cost-label {
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cost-amount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cost-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--yellow-color);
+}
+
+.cost-value {
+  font-size: 24px;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--yellow-color);
+  letter-spacing: 1px;
+}
+
+.confirm-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  width: 100vw;
+}
+
+.confirm-button {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: 'DIN Pro Cond', 'Sen', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  text-align: center;
+}
+
+.confirm-button.selected {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.confirm-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
